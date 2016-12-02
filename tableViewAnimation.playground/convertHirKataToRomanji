@@ -1,0 +1,278 @@
+import UIKit
+import XCPlayground
+import PlaygroundSupport
+
+
+let hiragana = "あ"
+let hiragana2 = "あ"
+let katakana = "漢字"
+let letterA = "きゃ"
+print("\u{3040}")
+for char in katakana.characters {
+    print(String(char).utf16)
+}
+String(data: letterA.data(using: String.Encoding.nonLossyASCII)! , encoding: String.Encoding.utf8)
+"\u{3042}" == hiragana
+
+let string = "test"
+
+func containsYaYiYo (contains: Character) -> Bool{
+    return (contains == "ゃ") || (contains == "ャ") || (contains == "ュ") || (contains == "ョ") || (contains == "ゅ") || (contains == "ょ")
+}
+
+func getRightYaYuYo(char : Character) -> String{
+    if (char == "ゃ" || char == "ャ" ) {
+        return "ya"
+    }
+    if (char == "ゅ" || char == "ュ" ){
+        return "yu"
+    }
+    return "yo"
+}
+
+
+extension Character {
+    func returnRomaji(romaji : [Character], index: Int) -> String {
+        switch self {
+        case "あ", "ア":
+            return "a"
+        case "い", "イ":
+            return "i"
+        case "う", "イ":
+            return "u"
+        case "え", "エ":
+            return "e"
+        case "お", "オ":
+            return "o"
+        case "か", "カ":
+            return "ka"
+        case "き", "キ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "ki")
+        case "く", "ク":
+            return "ku"
+        case "け", "ケ":
+            return "ke"
+        case "こ", "コ":
+            return "ko"
+        case "さ", "サ":
+            return "sa"
+        case "し", "シ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "shi")
+        case "す", "ス":
+            return "su"
+        case "せ", "セ":
+            return "se"
+        case "そ", "ソ":
+            return "so"
+        case "た", "タ":
+            return "ta"
+        case "ち", "チ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "chi")
+        case "つ", "ツ":
+            return "tsu"
+        case "て", "テ":
+            return "te"
+        case "と", "ト":
+            return "to"
+        case "な", "ナ":
+            return "na"
+        case "に", "ニ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "ni")
+        case "ぬ", "ヌ":
+            return "nu"
+        case "ね", "ネ":
+            return "ne"
+        case "の", "ノ":
+            return "no"
+        case "は", "ハ":
+            return "ha"
+        case "ひ", "ヒ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "hi")
+        case "ふ", "フ":
+            return "fu"
+        case "へ", "ヘ":
+            return "he"
+        case "ほ", "ホ":
+            return "ho"
+        case "ま", "マ":
+            return "ma"
+        case "み", "ミ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "mi")
+        case "む", "ム":
+            return "mu"
+        case "め", "メ":
+            return "me"
+        case "も", "モ":
+            return "mo"
+        case "や", "ヤ":
+            return "ya"
+        case "ゆ", "ユ":
+            return "yu"
+        case "よ", "ヨ":
+            return "yo"
+        case "ら", "ラ":
+            return "ra"
+        case "り", "リ":
+            return "ri"
+        case "る", "ル":
+            return "ru"
+        case "れ", "レ":
+            return "re"
+        case "ろ", "ロ":
+            return "ro"
+        case "わ", "ワ":
+            return "wa"
+        case "を", "ヲ":
+            return "wo"
+        case "ん", "ン":
+            return "n"
+        case "が", "ガ":
+            return "ga"
+        case "ぎ", "ギ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "gi")
+        case "ぐ", "グ":
+            return "gu"
+        case "げ", "ゲ":
+            return "ge"
+        case "ご", "ゴ":
+            return "go"
+        case "ざ", "ザ":
+            return "za"
+        case "じ", "ジ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "ji")
+        case "ず", "ズ":
+            return "zu"
+        case "ぜ", "ゼ":
+            return "ze"
+        case "ぞ", "ゾ":
+            return "zo"
+        case "だ", "ダ":
+            return "da"
+        case "ぢ", "ヂ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "ji")
+        case "づ", "ヅ":
+            return "zu"
+        case "で", "デ":
+            return "de"
+        case "ど", "ド":
+            return "do"
+        case "ば", "バ":
+            return "ba"
+        case "び", "ビ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "bi")
+        case "ぶ", "ブ":
+            return "bu"
+        case "べ", "ベ":
+            return "be"
+        case "ぼ", "ボ":
+            return "bo"
+        case "ぱ", "パ":
+            return "pa"
+        case "ぴ", "ぴ":
+            return canWeInspectFurther(currIndex: index, arrayOfChars: romaji, regular: "pi")
+        case "ぷ", "プ":
+            return "pu"
+        case "ぺ", "ペ":
+            return "pe"
+        case "ぽ", "ポ":
+            return "po"
+        default:
+            return String(self)
+        }
+    }
+}
+
+func canWeInspectFurther(currIndex: Int, arrayOfChars: [Character], regular: String) -> String{
+    if currIndex < arrayOfChars.count && ((currIndex + 1) != arrayOfChars.count) {
+        let character = arrayOfChars[ currIndex + 1]
+        if containsYaYiYo(contains: character){
+            let addTo = regular.characters.first!
+            return "\(addTo)\(getRightYaYuYo(char: character))"
+        }
+    }
+    return regular
+}
+func returnCorrectAiueo(character: Character) -> String{
+    switch character {
+    case "ぁ", "ァ":
+        return "a"
+    case "ぃ", "ィ":
+        return "i"
+    case "ぅ", "ゥ":
+        return "u"
+    case "ぇ", "ェ":
+        return "w"
+    case "ぉ", "ォ":
+        return "o"
+    default:
+        return String(character)
+    }
+    
+}
+func convertStringToRomaji(value: String) -> String{
+    let romaji = [Character](value.characters)
+    var conversionString = [String]()
+    for (index,char) in romaji.enumerated() {
+        switch char {
+            case "っ", "ッ":
+                if index < romaji.count  && index + 1 != romaji.count {
+                    let firstCharOnly = romaji[index + 1].returnRomaji(romaji : romaji, index: index + 1)
+                    conversionString.append("\(firstCharOnly.characters.first!)")
+                }
+            case "ぁ", "ぃ", "ぅ", "ぇ", "ぉ", "ォ":
+                let aiueo = returnCorrectAiueo(character: char)
+                if index != 0 {
+                    let previousChar = conversionString[index - 1]
+                    let stringToEdit = previousChar.characters.dropLast()
+                    conversionString[index - 1] = "\(String(stringToEdit))\(aiueo)"
+                }
+            
+            default:
+                conversionString.append(char.returnRomaji(romaji : romaji, index: index))
+        }
+    }
+    return conversionString.reduce("", { string, character in
+        return string + character
+    })
+}
+
+extension String {
+    var stringToRomaji: String {
+        let romaji = [Character](self.characters)
+        var conversionString = [String]()
+        for (index,char) in romaji.enumerated() {
+            switch char {
+            case "っ", "ッ":
+                if index < romaji.count  && index + 1 != romaji.count {
+                    let firstCharOnly = romaji[index + 1].returnRomaji(romaji : romaji, index: index + 1)
+                    conversionString.append("\(firstCharOnly.characters.first!)")
+                }
+            case "ぁ", "ぃ", "ぅ", "ぇ", "ぉ", "ァ", "ィ","ゥ","ェ","ォ":
+                let aiueo = returnCorrectAiueo(character: char)
+                if index != 0 {
+                    let previousChar = conversionString[index - 1]
+                    let stringToEdit = previousChar.characters.dropLast()
+                    conversionString[index - 1] = "\(String(stringToEdit))\(aiueo)"
+                }
+                
+            default:
+                conversionString.append(char.returnRomaji(romaji : romaji, index: index))
+            }
+        }
+        return conversionString.reduce("", { string, character in
+            return string + character
+        })
+        
+    }
+
+}
+
+print(String("test".characters.dropLast()))
+print("アメニティドームS".stringToRomaji)
+let pattern = "[\u{3040}-\u{309F}\u{30A0}-\u{30FF}\u{FF00}-\u{FFEF}]+"
+let regex = try! NSRegularExpression(pattern: pattern, options: [])
+let strin = "ひらが"
+if let range = strin.range(of:pattern, options: .regularExpression) {
+    let result = strin.substring(with:range)
+}
+"sutaika - reddo".hasPrefix("su")
